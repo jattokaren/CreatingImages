@@ -38,7 +38,7 @@ print(filename)
 filetype = fullfilename[-3:]     # Last 3 characters
 print(filetype)
 filesize = os.path.getsize(fullfilename)
-print(filesize)
+print(str('File Size: ') + str(filesize))
 
 # display the image width, height, and number of channels to our
 # terminal
@@ -64,7 +64,8 @@ image_editable.text((15,15), title_text, (0, 0, 0))
 # Text: String between single or double quotations
 # Text color in RGB format: Google Picker is a great resource to find the best color. Search “Color Picker” on Google and it will show up
 # Font style: Google Fonts is a great resource to pick your font style, and you can also download the TTF(TrueType Font) file of the font family.
-oilpaint50.save("result.jpg")
+#oilpaint50.save("result.jpg")
+oilpaint50.save(str(filename + '-withText.jpg'))
 
 uniqueColors = set()
 w, h = oilpaint50.size
@@ -126,17 +127,17 @@ Create an output directory if it is not already there for output images & text f
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 #cv2.imshow("Image Gray", gray)
 #cv2.waitKey(0)
-cv2.imwrite("newimage-gray.jpg", gray)
+cv2.imwrite(str(filename + "-BGR2Gray.jpg"), gray)
 
 blurred = cv2.GaussianBlur(gray, (5,5), 0)
 #cv2.imshow("Image Gray Blurred", blurred)
 #cv2.waitKey(0)
-cv2.imwrite("newimage-blurred.jpg", blurred)
+cv2.imwrite(str(filename + "-BGR2Gray-GaussianBlur.jpg"), blurred)
 
 thresh = cv2.threshold(blurred, 60, 255, cv2.THRESH_BINARY)[1]
 #cv2.imshow("Image Gray Blurred Threshold", thresh)
 #cv2.waitKey(0)
-cv2.imwrite("newimage-blurred-thresh.jpg", thresh)
+cv2.imwrite(str(filename + "-BGR2Gray-GaussianBlur-thresh.jpg"), thresh)
 
 
 '''
